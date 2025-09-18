@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import Exchange from "./components/Exchange"
 
 export default function App() {
 
@@ -9,7 +10,26 @@ export default function App() {
     { id: 3, title: 'Забрать зарплату', completed: true },
   ])
 
+  const [filteredTodos, setFilteredTodos] = useState([])
+
   const [newTodo, setNewTodo] = useState('')
+  const [currentFilter, setCurrentFilter] = useState('All')
+
+  useEffect(() => {
+
+    if (currentFilter === 'Done') {
+      setFilteredTodos(
+        todos.filter(todo => todo.completed === true)
+      )
+    } else if (currentFilter === 'InProcess') {
+      setFilteredTodos(
+        todos.filter(todo => todo.completed === false)
+      )
+    } else {
+      setFilteredTodos(todos)
+    }
+
+  }, [currentFilter, todos])
 
   function toggleTodo(id) {
     setTodos(
@@ -33,15 +53,41 @@ export default function App() {
     )
   }
 
+  function removeTodo(id) {
+    setTodos(
+      todos.filter(todo => {
+        return todo.id !== id
+      })
+    )
+  }
+
   return (
     <div>
-      <h1>ToDo лист</h1>
+      <h2>ОБМЕН ВАЛЮТЫ</h2>
+      <Exchange />
+      <h2>ToDo лист</h2>
+
+      <div className="filters">
+        <label>
+          Выполненные
+          <input type="radio" name="filter" onChange={() => setCurrentFilter('Done')} />
+        </label>
+        <label>
+          Не выполненные
+          <input type="radio" name="filter" onChange={() => setCurrentFilter('InProcess')} />
+        </label>
+        <label>
+          Все
+          <input type="radio" name="filter" onChange={() => setCurrentFilter('All')} />
+        </label>
+      </div>
 
       {
-        todos.map(todo => (
+        filteredTodos.map(todo => (
           <div className={todo.completed ? 'striked' : ''}>
             <input onChange={() => toggleTodo(todo.id)} checked={todo.completed} type="checkbox" />
             <span>{todo.title}</span>
+            <button onClick={() => removeTodo(todo.id)}>X</button>
           </div>
         ))
       }

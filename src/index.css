@@ -35,3 +35,10 @@
 .striked {
   text-decoration: line-through;
 }
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
