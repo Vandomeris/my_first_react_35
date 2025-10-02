@@ -61,8 +61,7 @@ export default function Todo() {
 
     return (
         <div>
-            <h2>ОБМЕН ВАЛЮТЫ</h2>
-            <Exchange />
+
             <h2>ToDo лист</h2>
 
             <div className="filters">
