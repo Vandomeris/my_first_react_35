@@ -1,5 +1,7 @@
 import { useState } from "react";
 import CreateDirectQuestion from "../components/QuizCreation/CreateDirectQuestion";
+import CreateSingleQuestion from "../components/QuizCreation/CreateSingleQuestion";
+import CreateMultipleQuestion from "../components/QuizCreation/CreateMultipleQuestion";
 
 export default function CreateQuizPage() {
 
@@ -17,17 +19,44 @@ export default function CreateQuizPage() {
         )
     }
 
+    function editQuestion(id, value, field) {
+        setQuiz(
+            quiz.map(question => {
+                if (question.id === id) {
+                    return {
+                        ...question,
+                        [field]: value
+                    }
+                } else {
+                    return question
+                }
+            })
+        )
+    }
+
     return (
         <div>
             {
                 quiz.map(question => (
                     <div>
-                        <select>
+                        <select onChange={(e) => editQuestion(question.id, e.target.value, 'type')}>
                             <option value="direct">Прямой ответ</option>
                             <option value="single">1 ответ из вариантов</option>
                             <option value="multiple">Несколько ответов из вариантов</option>
                         </select>
-                        <CreateDirectQuestion question={question} />
+                        {
+                            question.type == 'direct' &&
+                            <CreateDirectQuestion question={question} editQuestion={editQuestion} />
+                        }
+                        {
+                            question.type == 'single' &&
+                            <CreateSingleQuestion question={question} />
+                        }
+                        {
+                            question.type == 'multiple' &&
+                            <CreateMultipleQuestion question={question} />
+                        }
+
                     </div>
                 ))
             }
