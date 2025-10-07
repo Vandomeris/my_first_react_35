@@ -7,14 +7,14 @@ export default function CreateQuizPage() {
 
 
     const [quiz, setQuiz] = useState([
-        { id: Date.now(), type: 'direct', options: [], question: '', correctAnswer: '', },
+        { id: Date.now(), type: 'direct', options: [''], question: '', correctAnswer: '', },
     ])
 
     function addQuestion() {
         setQuiz(
             [
                 ...quiz,
-                { id: Date.now(), type: 'direct', options: [], question: '', correctAnswer: '', },
+                { id: Date.now(), type: 'direct', options: [''], question: '', correctAnswer: '', },
             ]
         )
     }
@@ -50,11 +50,11 @@ export default function CreateQuizPage() {
                         }
                         {
                             question.type == 'single' &&
-                            <CreateSingleQuestion question={question} />
+                            <CreateSingleQuestion question={question} editQuestion={editQuestion} />
                         }
                         {
                             question.type == 'multiple' &&
-                            <CreateMultipleQuestion question={question} />
+                            <CreateMultipleQuestion question={question} editQuestion={editQuestion} />
                         }
 
                     </div>
