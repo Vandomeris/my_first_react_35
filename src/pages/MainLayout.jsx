@@ -9,6 +9,7 @@ export default function MainLayout() {
                 <nav className="flex gap-x-4">
                     <NavLink to="/">Главная</NavLink>
                     <NavLink to="/admin">Админ-панель</NavLink>
+                    <NavLink to="/quizes">Квизы</NavLink>
                 </nav>
             </header>
 

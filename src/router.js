@@ -4,6 +4,7 @@ import AdminPage from "./pages/AdminPage";
 import MainLayout from "./pages/MainLayout";
 import QuizesPage from "./pages/QuizesPage";
 import CreateQuizPage from "./pages/CreateQuizPage";
+import PlayQuizPage from "./pages/PlayQuizPage";
 
 export const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
             {
                 path: 'quizes/create',
                 Component: CreateQuizPage
+            },
+            {
+                path: 'quizes/:id',
+                Component: PlayQuizPage
             }
         ]
     }

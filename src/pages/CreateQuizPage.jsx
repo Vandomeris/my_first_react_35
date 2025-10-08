@@ -10,6 +10,8 @@ export default function CreateQuizPage() {
         { id: Date.now(), type: 'direct', options: [''], question: '', correctAnswer: '', },
     ])
 
+
+
     function addQuestion() {
         setQuiz(
             [
@@ -34,8 +36,38 @@ export default function CreateQuizPage() {
         )
     }
 
+    const [title, setTitle] = useState('')
+
+
+    function saveQuiz() {
+
+        const Quiz = {
+            id: Date.now(),
+            title: title,
+            questions: quiz
+        }
+
+        if (localStorage.getItem('quizes')) {
+            const quizes = JSON.parse(localStorage.getItem('quizes'))
+            quizes.push(Quiz)
+            localStorage.setItem('quizes', JSON.stringify(quizes))
+        } else {
+            localStorage.setItem('quizes', JSON.stringify([Quiz]))
+        }
+
+    }
+
     return (
         <div>
+            <div className="flex justify-center">
+                <input
+                    value={title}
+                    onInput={(e) => setTitle(e.target.value)}
+                    className="border py-1 border-amber-500 px-2 w-1/2 mb-10"
+                    placeholder="Название квиза"
+                    type="text"
+                />
+            </div>
             {
                 quiz.map(question => (
                     <div>
@@ -64,7 +96,7 @@ export default function CreateQuizPage() {
 
             <button onClick={() => addQuestion()}>Добавить вопрос</button>
 
-
+            <button onClick={() => saveQuiz()}>Сохранить квиз!</button>
         </div>
     )
 }

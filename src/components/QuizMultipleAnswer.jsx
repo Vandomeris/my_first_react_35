@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react"
 
-export default function QuizMultipleAnswer() {
+export default function QuizMultipleAnswer({ correctAnswers, question, variants }) {
 
-    const correctAnswers = [
-        'Кушал',
-        "Относил ключи"
-    ]
+
     const [userAnswers, setUserAnswers] = useState([])
     const [result, setResult] = useState('')
 
@@ -38,25 +35,18 @@ export default function QuizMultipleAnswer() {
 
     return (
         <div>
-            <h3>Почему я опаздал на пол часа на вторую пару?</h3>
+            <h3>{question}</h3>
 
             <div>
-                <label>
-                    <input type="checkbox" onChange={() => checkAnswer('Кушал')} />
-                    Кушал
-                </label>
-                <label>
-                    <input type="checkbox" onChange={() => checkAnswer('Относил ключи')} />
-                    Относил ключи
-                </label>
-                <label>
-                    <input type="checkbox" onChange={() => checkAnswer('Не знаю')} />
-                    Не знаю
-                </label>
-                <label>
-                    <input type="checkbox" onChange={() => checkAnswer('Переводил бабушку через дорогу')} />
-                    Переводил бабушку через дорогу
-                </label>
+
+                {
+                    variants.map(variant => (
+                        <label>
+                            <input type="checkbox" onChange={() => checkAnswer(variant)} />
+                            {variant}
+                        </label>
+                    ))
+                }
 
             </div>
             <p>{result}</p>
