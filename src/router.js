@@ -6,6 +6,7 @@ import QuizesPage from "./pages/QuizesPage";
 import CreateQuizPage from "./pages/CreateQuizPage";
 import PlayQuizPage from "./pages/PlayQuizPage";
 import BooksPage from "./pages/BooksPage";
+import BookCardPage from "./pages/BookCardPage";
 
 export const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
             {
                 path: 'books',
                 Component: BooksPage
+            },
+            {
+                path: 'books/:id',
+                Component: BookCardPage
             }
         ]
     }

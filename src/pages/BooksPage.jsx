@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import CreateBook from "../components/CreateBook"
+import { NavLink } from "react-router"
 
 export default function BooksPage() {
 
@@ -27,14 +28,16 @@ export default function BooksPage() {
             <CreateBook />
 
 
-            <div>
+            <div className="grid lg:grid-cols-5 md:grid-cols-3 gap-5 mt-10">
                 {
                     books.map((book) => (
-                        <div>
-                            <h3>{book.title}</h3>
+                        <NavLink to={`/books/${book.id}`} className="flex flex-col gap-4">
+                            <h3 className="text-center font-bold text-xl">{book.title}</h3>
                             <p>{book.pageCount} страниц</p>
                             <p>{book.description}</p>
-                        </div>
+
+                            <p className="w-full truncate">{book.excerpt}</p>
+                        </NavLink>
                     ))
                 }
             </div>
