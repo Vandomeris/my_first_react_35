@@ -23,7 +23,9 @@ export default function PlayQuizPage() {
 
                         {
                             question.type == 'direct' &&
-                            <QuizDirectAnswer correctAnswer={question.correctAnswer} question={question.question} />
+                            <QuizDirectAnswer
+                                correctAnswer={question.correctAnswer}
+                                question={question.question} />
                         }
                         {
                             question.type == 'single' &&

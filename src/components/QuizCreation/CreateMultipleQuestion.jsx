@@ -45,8 +45,8 @@ export default function CreateMultipleQuestion({ question, editQuestion }) {
                     question.options.map((option, index) => (
                         <div className="flex gap-x-3">
                             <input className="bg-blue-500 p-1" type="text" value={option} onInput={(e) => editOption(e.target.value, index)} placeholder={`Вариант ${index + 1}`} />
-                            <label className="flex gap-x-2">
-                                <input type="checkbox" onChange={() => checkAnswer(option)} />
+                            <label className="flex gap-x-2 check_answer">
+                                <input hidden type="checkbox" onChange={() => checkAnswer(option)} />
                                 <p>Правильный ответ</p>
                             </label>
                         </div>

@@ -3,3 +3,15 @@
 input:focus {
     outline: none;
 }
+
+.check_answer P {
+    padding: 5px;
+}
+
+.check_answer input:checked+p {
+    background-color: chartreuse;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
